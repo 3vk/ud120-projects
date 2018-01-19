@@ -5,6 +5,7 @@ from prep_terrain_data import makeTerrainData
 from class_vis import prettyPicture
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.ensemble import AdaBoostClassifier
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
@@ -32,7 +33,8 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
-clf = RandomForestClassifier(n_estimators=5)
+#clf = RandomForestClassifier(n_estimators=5)
+clf = AdaBoostClassifier(n_estimators=100, learning_rate=0.8)
 clf = clf.fit(features_train, labels_train)
 pred = clf.predict(features_test)
 accuracy = accuracy_score(labels_test, pred)
