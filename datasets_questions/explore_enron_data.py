@@ -14,9 +14,22 @@
     enron_data["SKILLING JEFFREY K"]["bonus"] = 5600000
     
 """
-
+from collections import Counter
 import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
-
+count =0
+for key in enron_data.keys():
+	if enron_data[key]["poi"] == 1 and enron_data[key]["total_payments"] == 'NaN':
+		count += 1
+print count*100/18
+#.......................
+#with open("G:/Udemy courses/Intro to machine learning/ud120-projects/final_project/poi_names.txt","r") as file:
+#    for line in file:
+#        if line.startswith("("):
+#            count += 1
+#print count
+#.........................
+#execs = [s for s in enron_data.keys() if ("SKILLING" in s) or ("LAY" in s) or ("FASTOW" in s) ] 
+#print enron_data["LAY KENNETH L"]
 
