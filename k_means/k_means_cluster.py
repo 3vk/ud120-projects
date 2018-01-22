@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
+from sklearn.cluster import KMeans
 
 
 
@@ -48,6 +49,7 @@ data_dict.pop("TOTAL", 0)
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
+#feature_3 = "total_payments"
 poi  = "poi"
 features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
@@ -64,8 +66,17 @@ plt.show()
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
-
-
+kmeans = KMeans(n_clusters=2, random_state=0).fit(finance_features)
+pred = kmeans.predict(finance_features)
+x=0
+y=999999999999999999999999999
+for key in data_dict.keys():
+	if data_dict[key]["salary"] > x and data_dict[key]["salary"] != "NaN" :
+		x = data_dict[key]["salary"]
+	if data_dict[key]["salary"] < y:
+		y = data_dict[key]["salary"]
+print x
+print y
 
 
 ### rename the "name" parameter when you change the number of features
