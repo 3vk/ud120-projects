@@ -51,7 +51,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         ### use parseOutText to extract the text from the opened email
         str=parseOutText(email)
         ### use str.replace() to remove any instances of the words
-        s=["sara", "shackleton", "chris", "germani"]
+        s=["sara", "shackleton", "chris", "germani", "sshacklensf", "cgermannsf"]
         for i in s:
             str= str.replace(i,'') 
         ### append the text to word_data

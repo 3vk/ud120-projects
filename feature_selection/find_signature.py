@@ -2,6 +2,8 @@
 
 import pickle
 import numpy
+from sklearn import tree
+from sklearn.metrics import accuracy_score
 numpy.random.seed(42)
 
 
@@ -38,6 +40,17 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(features_train, labels_train)
+pred = clf.predict(features_test)
+x = clf.feature_importances_
+for j,i in zip(range(len(x)),x):
+    if i>0.2:
+         print i,j, vectorizer.get_feature_names()[j]
+
+		 
+accuracy = accuracy_score(labels_test, pred)
+print accuracy
 
 
 
